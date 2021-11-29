@@ -5,11 +5,11 @@ int w = 500 / rows;//for y
 
 Integer[][] numCells = { {1, 2, 3} , {8, 0, 4} ,{7,6,5} };
 Cell[][] grid = new Cell[cols][rows];
-Graph g = new Graph();
+
 
 int emptyX = 1;
 int emptyY = 1;
-int currentGridNums[] = new int[9];
+int currentGridNums[] = {1,2,3, 8,0,4, 7,6,5};
 int endGridNums[] = {3,5,1,4,0,2,7,8,6};
 
 
@@ -29,10 +29,11 @@ void setup() {
     createGrid();
     setGridNums();
     setEmptyAdjacents();
-    createGraph();
+
 }
 
 void draw() {
+
     showGrid(grid);
 }
 
@@ -82,11 +83,9 @@ void initNearEmpty() {
             grid[ii][jj].nearEmptyCell = false;
 }
 
-void createGraph() {
+void setAjacents() {
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < rows; j++) {
-                g.addCell(grid[i][j].index, grid[i][j]);
-                
                 if (j > 0)
                     grid[i][j].addAdjacent(grid[i][j - 1]);
                 
@@ -98,8 +97,8 @@ void createGraph() {
                 
                 if (i < cols - 1)
                     grid[i][j].addAdjacent(grid[i + 1][j]);
-            }
         }
+    }
 }
 
 
@@ -129,3 +128,4 @@ void clickMoveEmpty(int i, int j){
         setEmptyAdjacents();
     }
 }
+
