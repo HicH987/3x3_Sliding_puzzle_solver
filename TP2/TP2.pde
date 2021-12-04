@@ -13,13 +13,13 @@ class Button{
         title = t;
     }
     void display() {
-        // strokeWeight(3);
+        strokeWeight(1);
         stroke(255);
         fill(50);
         rect(x, y, w, h);
         textSize(h/2);
         fill(160, 160, 160);
-        text(title, x+5,h/2+8+h);
+        text(title, x+5,h/2+8+y);
 
     // rect(560, 50, 150, 50);
     // text("Confirm Start", 565, 78);
@@ -130,7 +130,7 @@ int empty_X, empty_Y;
 LinkedList<Node> path;
 
 Button button1 = new  Button(560, 50,150, 50,"Confirm Start");
-// Button button1 = new  Button();
+Button button2 = new  Button(560, 300,150, 50,"Confirm goal");
 
 
 
@@ -154,6 +154,7 @@ void draw() {
     background(150);
     // println(mouseX,":",mouseY);
     button1.display();
+    button2.display();
 
     showGrid();
     
