@@ -135,6 +135,9 @@ Button button1 = new  Button(560, 50,150, 50,"Confirm Start");
 String button2 = "Confirm goal";
 String inPut;
 Boolean startSearch = false; 
+Boolean creatPath = false;
+
+
 void setup() {
     size(800, 500);
     frameRate(3);
@@ -169,17 +172,28 @@ void setup() {
 
 void draw() {
     background(150);
+    if(startSearch){
+        if(isSolvable(initial))
+            path = solve(empty_X,empty_Y);
+        else
+            println("The given initial is impossible to solve");
+        startSearch = false;
+        creatPath=true;
+    }
     // println(mouseX,":",mouseY);
     button1.display();
     // button2.display();
 
     showGrid();
-    
-    // if(path.size() > 0) {
-    //     Node w = path.getFirst();
-    //     createGrid(w.matrix);
-    //     path.removeFirst();
-    // }
+    if (creatPath){
+        if(path.size() > 0) {
+            Node w = path.getFirst();
+            createGrid(w.matrix);
+            path.removeFirst();
+        }
+        else
+            creatPath=false;
+    }
     
 }
 
@@ -200,6 +214,11 @@ void controlEvent(ControlEvent theEvent) {
             println();
         }
         startSearch = true;
+
+    if(isSolvable(initial))
+        path = solve(empty_X,empty_Y);
+    else
+        println("The given initial is impossible to solve");
   }
 }
 void getGoalInput(String s){
