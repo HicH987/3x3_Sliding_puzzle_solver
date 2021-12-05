@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
-
+import controlP5.*;
+ControlP5 cp5;
 class Button{
     int x, y; // x,y location
     int w, h; // width and height
@@ -25,7 +26,7 @@ class Button{
     // text("Confirm Start", 565, 78);
     }
     boolean selected() {
-        if(mouseX >= x && mouseX <= x + h && mouseY >= y && mouseY <= y + h)
+        if(mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h)
             return true;
         else
             return false;
@@ -130,14 +131,30 @@ int empty_X, empty_Y;
 LinkedList<Node> path;
 
 Button button1 = new  Button(560, 50,150, 50,"Confirm Start");
-Button button2 = new  Button(560, 300,150, 50,"Confirm goal");
-
-
-
+// Button button2 = new  Button(560, 300,150, 50,"Confirm goal");
+String button2 = "Confirm goal";
+String inPut;
+Boolean startSearch = false; 
 void setup() {
     size(800, 500);
     frameRate(3);
+     PFont font = createFont("arial",20);
+    cp5 = new ControlP5(this);
+    cp5.addTextfield(button2)
+    .setPosition(560, 300)
+    .setSize(150, 40)
+    .setFont(font)
+    .setFocus(true)
+    .setColor(150)
+    // .setColorValue(150)   
+    // .setColorActive(250)
+    .setColorBackground(color(50));
     
+
+
+
+
+
     setSxSy();
 
     createGrid(initial);
@@ -154,7 +171,7 @@ void draw() {
     background(150);
     // println(mouseX,":",mouseY);
     button1.display();
-    button2.display();
+    // button2.display();
 
     showGrid();
     
@@ -166,7 +183,41 @@ void draw() {
     
 }
 
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isAssignableFrom(Textfield.class)) {
+    println("controlEvent: accessing a string from controller '"
+      +theEvent.getName()+"': "
+      +theEvent.getStringValue()
+      );
+
+
+      inPut=theEvent.getStringValue();
+      getGoalInput(inPut);
+              for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) { 
+                    print(goal[i][j]);
+            }
+            println();
+        }
+        startSearch = true;
+  }
+}
+void getGoalInput(String s){
+        String[] str= s.split(" ");
+        if(str.length==9){
+            int k=0;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) { 
+                    goal[i][j]= Integer.valueOf(str[k]);
+                    k++;
+                }
+            }
+     
+        }
+}
+
 void mousePressed() {
+
     for (int i = 0; i < cols; i++) {
         for (int j = 0; j < rows; j++) {   
             if (grid[i][j].selected() && grid[i][j].nearEmptyCell) {
@@ -175,7 +226,26 @@ void mousePressed() {
             }
         }
     }
+    if (button1.selected()){
+        for (int i = 0; i < cols; i++) 
+            for (int j = 0; j < rows; j++) 
+                initial[i][j] = grid[i][j].num;
+            
+            setSxSy();
+            createGrid(initial);
+            initEmptyAdjacents();
+
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {   
+                    print(initial[i][j]);
+            }
+            println();
+        }
+    }
+
+  
 }   
+
 ///////////////////////////////
 /////////FUNCTIONS////////////////
 ////////////////////////////////////
