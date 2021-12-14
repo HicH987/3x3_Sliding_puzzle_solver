@@ -3,11 +3,14 @@ import java.util.*;
 
 
 void setup(){
-int[][] initial = { { 8, 4, 7 } , 
-                    { 5, 0, 3 } , 
-                    { 1, 2, 6 } };
-                 
- print(isSolvable3(initial));
+int[][] initial = { { 0, 2, 5 } , 
+                    { 1, 3, 4 } , 
+                    { 8, 7, 6 } };
+ int[][] in= { { 7, 3, 4 } , 
+                    { 8, 0, 5 } , 
+                    { 1, 2, 6 } };    
+  print(isSolvable1(initial));          
+//  print(isSolvable3(initial));
 }
 
 
@@ -18,6 +21,7 @@ boolean isSolvable1(int[][] arr){
         for (int j = i + 1; j < 3; j++)
             if (arr[j][i] > 0 && arr[j][i] > arr[i][j])
                 inv_count++;
+    println(inv_count);
     return (inv_count % 2 == 0);
 }
 

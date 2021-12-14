@@ -1,36 +1,11 @@
-int getInvCount(int[][] arr){
-    int inv_count = 0;
+boolean isSolvable(int[][] arr){
+    int invCount = 0;
     for (int i = 0; i < 3 - 1; i++)
         for (int j = i + 1; j < 3; j++)
             if (arr[j][i] > 0 && arr[j][i] > arr[i][j])
-                inv_count++;
-    return inv_count;
-}
-
-boolean isSolvable(int[][] puzzle){
-    int invCount = getInvCount(puzzle);
+                invCount++;
     return (invCount % 2 == 0);
 }
-
-// boolean isSolvable2(int[][] arr){
-  
-//   int[] tmp = new int[9];
-//   int k= 0;
-//   for (int i = 0; i < 3; i++){
-//     for (int j = 0; j < 3; j++){
-//        tmp[k] = arr[i][j];
-//        k++;  
-//         }   
-//      }
-//      int s=0;
-//      for (int i=0; i<9; i++){
-//         for(int j=i+1; j<9; j++){
-//           if(tmp[j]!=0 && tmp[i]!=0 && tmp[i]> tmp[j])
-//             s++;
-//         }
-//      }
-//   return (s % 2 == 0);
-// }
 
 int calculateCost(int[][] initial, int[][] goal) {
     int count = 0;
@@ -70,6 +45,7 @@ LinkedList<Node> solve(int x, int y) {
             }
         }
         if(!pq.isEmpty()) {
+
             min = pq.poll();
         }
     }

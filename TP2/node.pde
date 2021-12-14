@@ -3,7 +3,7 @@ class Node{
     Node parent;
     int[][] matrix;
     
-    // Blank tile cordinates
+    // empty call cordinates
     int x, y;
     
     // Number of misplaced tiles //h
@@ -15,6 +15,7 @@ class Node{
     Node(int[][] matrix, int x, int y, int newX, int newY, int level, Node parent) {
         this.parent = parent;
         this.matrix = new int[matrix.length][];
+        
         for(int i = 0; i < matrix.length; i++) {
             this.matrix[i] = matrix[i].clone();
         }
