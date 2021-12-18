@@ -9,7 +9,11 @@ int[][] initial = { { 0, 2, 5 } ,
  int[][] in= { { 7, 3, 4 } , 
                     { 8, 0, 5 } , 
                     { 1, 2, 6 } };    
-  print(isSolvable1(initial));          
+
+ int[][] i= { { 4, 6, 8 } , 
+                    { 5, 0, 3 } , 
+                    { 7, 1, 2 } };    
+  print(isSolvable3(i));          
 //  print(isSolvable3(initial));
 }
 
