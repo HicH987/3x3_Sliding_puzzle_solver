@@ -6,20 +6,13 @@ The aim of this project was to find a solution to 3x3 Sliding Puzzle using A* se
 
 The use of A* is explained on the image below
 
-<figure align="center">
-    <img src="./assets/images/deroulement.png" alt="Drawing" style="width: 600px;"/> 
-    <figcaption > A* on Sliding Puzzle  <figcaption>
-</figure>
+<img src="./assets/images/deroulement.png" alt="Drawing" style="width: 600px;"/> 
 <br>
 
 The picture below shows the program process 
-<figure align="center">
-    <img src="./assets/images/puzzle.gif" alt="Drawing" style="width: 600px;"/> 
-    <figcaption > Sliding Puzzle  <figcaption>
-</figure>
+
+<img src="./assets/images/puzzle.gif" alt="Drawing" style="width: 600px;"/> 
 <br>
-
-
 
 The most importent used libraries:
 
